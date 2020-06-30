@@ -53,7 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.configFirebase),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,

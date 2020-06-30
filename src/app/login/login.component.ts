@@ -1,4 +1,5 @@
-import { AuthService } from './../services/auth.service';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from "@angular/fire/auth";
 import { Component, OnInit } from '@angular/core';
 import { UserInput } from '../models/user-input.model';
 
@@ -9,13 +10,22 @@ import { UserInput } from '../models/user-input.model';
 })
 export class LoginComponent implements OnInit {
   model: UserInput = { username: '', password: '' };
-  constructor(public auth: AuthService) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
+
   login() {
-    console.log(this.model)
+    return this.afAuth.signInWithEmailAndPassword(this.model.username, this.model.password)
+      .then((result) => {
+        if (result) {
+          localStorage.setItem('currentUser', JSON.stringify({ username: result.user.displayName, email: result.user.email }))
+          this.router.navigate(['/dashboard']);
+        }
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
 }

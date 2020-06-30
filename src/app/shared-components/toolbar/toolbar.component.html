@@ -1,1 +1,10 @@
-<p>toolbar works!</p>
+<mat-toolbar>
+    <div class="row w-100">
+        <div class="col-lg-6">
+            <span>{{username}}</span>
+        </div>
+        <div class="col-lg-6">
+            <div class="text-right" (click)="logout()">LogOut</div>
+        </div>
+    </div>
+</mat-toolbar>

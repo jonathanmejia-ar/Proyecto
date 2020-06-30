@@ -25,6 +25,8 @@
 
                         <button mat-button [disabled]="model.username == '' || model.password == ''"
                             class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <button mat-button class="btn btn-lg btn-warning btn-block text-uppercase" type="button"
+                            [routerLink]="['/register']">Register</button>
                         <hr class="my-4">
                         <button (click)="auth.googleSignin()" mat-button
                             class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
