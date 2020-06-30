@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
@@ -39,16 +40,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
-const config = {
-  apiKey: "AIzaSyAQ-bGtbWOxkOKUwZlIi2xB3Lest5Eg-HQ",
-  authDomain: "undertake-ac85f.firebaseapp.com",
-  databaseURL: "https://undertake-ac85f.firebaseio.com",
-  projectId: "undertake-ac85f",
-  storageBucket: "undertake-ac85f.appspot.com",
-  messagingSenderId: "717927926386",
-  appId: "1:717927926386:web:dea16d8e732bbe41d310eb",
-  measurementId: "G-LW9KBSG7K9"
-};
 
 @NgModule({
   declarations: [
@@ -62,7 +53,7 @@ const config = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(config),
+    AngularFireModule.initializeApp(environment.configFirebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
