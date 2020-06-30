@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 
-import * as firebase from 'firebase/app';
-
+import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {
     AngularFirestore,
@@ -50,13 +49,14 @@ export class AuthService {
     }
 
     private updateUserData(user) {
+        console.log(user)
         // Sets user data to firestore on login
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
         const data = {
             uid: user.uid,
             email: user.email,
-            nombre: user.nombre,
+            nombre: user.displayName,
         };
 
         return userRef.set(data, { merge: true });
