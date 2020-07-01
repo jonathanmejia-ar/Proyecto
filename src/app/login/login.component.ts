@@ -1,7 +1,9 @@
+import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from "@angular/fire/auth";
+
 import { Component, OnInit } from '@angular/core';
 import { UserInput } from '../models/user-input.model';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,7 @@ import { UserInput } from '../models/user-input.model';
 })
 export class LoginComponent implements OnInit {
   model: UserInput = { username: '', password: '' };
-  constructor(public afAuth: AngularFireAuth, private router: Router) { }
+  constructor(public afAuth: AngularFireAuth, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -27,5 +29,11 @@ export class LoginComponent implements OnInit {
       }).catch((error) => {
         window.alert(error.message)
       })
+  }
+
+  loginGmail() {
+    this.auth.googleSignin().then(x => {
+      this.router.navigate(['/dashboard']);
+    })
   }
 }

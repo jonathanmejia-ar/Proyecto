@@ -42,12 +42,6 @@ export class AuthService {
         return this.updateUserData(credential.user);
     }
 
-
-    public async signOut() {
-        await this.afAuth.signOut();
-        return this.router.navigate(['/']);
-    }
-
     private updateUserData(user) {
         // Sets user data to firestore on login
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
@@ -61,5 +55,12 @@ export class AuthService {
         return userRef.set(data, { merge: true });
 
     }
+
+
+    public async signOut() {
+        await this.afAuth.signOut();
+        return this.router.navigate(['/']);
+    }
+
 
 }

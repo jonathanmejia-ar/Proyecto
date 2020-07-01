@@ -28,11 +28,9 @@
                         <button mat-button class="btn btn-lg btn-warning btn-block text-uppercase" type="button"
                             [routerLink]="['/register']">Register</button>
                         <hr class="my-4">
-                        <button (click)="auth.googleSignin()" mat-button
-                            class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                                class="fab fa-google mr-2"></i> Sign in with Google</button>
-
                     </form>
+                    <button (click)="loginGmail()" mat-button class="btn btn-lg btn-google btn-block text-uppercase"
+                        type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
                 </div>
             </div>
         </div>
