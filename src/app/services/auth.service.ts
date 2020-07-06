@@ -27,14 +27,13 @@ export class AuthService {
             switchMap(user => {
                 if (user) {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+                    localStorage.setItem('currentUid', user.uid)
                 } else {
                     return of(null);
                 }
             })
         );
     }
-
-
 
     public async googleSignin() {
         const provider = new auth.GoogleAuthProvider();
@@ -53,14 +52,10 @@ export class AuthService {
         };
 
         return userRef.set(data, { merge: true });
-
     }
-
 
     public async signOut() {
         await this.afAuth.signOut();
         return this.router.navigate(['/']);
     }
-
-
 }

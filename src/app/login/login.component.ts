@@ -11,7 +11,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  model: UserInput = { username: '', password: '' };
+  model: UserInput = { username: '', password: '', confirmPassword: '' };
   constructor(public afAuth: AngularFireAuth, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
