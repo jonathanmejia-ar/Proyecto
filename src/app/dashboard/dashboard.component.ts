@@ -3,6 +3,7 @@ import { auth } from 'firebase/app';
 import { User } from './../models/user.model';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map, tap } from 'rxjs/operators';
+import { LocalStorageService } from '../services/localtorages.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,9 +12,10 @@ import { map, tap } from 'rxjs/operators';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
+    console.log(this.localStorage.getUid())
   }
 
   crearEmprendimiento() {
@@ -29,7 +31,7 @@ export class DashboardComponent implements OnInit {
     })*/
 
     //this.afs.firestore.collection('users').where('uid', '==', 'giVbspbxjlY0KNs1X1e1pFmuDjj1').snapshotChanges()
-    this.afs.collection('users').doc('giVbspbxjlY0KNs1X1e1pFmuDjj1').snapshotChanges().pipe(map(r => r.payload.data())).subscribe(x => console.log(x))
+    this.afs.collection('users').doc(this.localStorage.getUid()).snapshotChanges().pipe(map(r => r.payload.data())).subscribe(x => console.log(x))
 
 
 

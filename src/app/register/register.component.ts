@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
     return this.afAuth.createUserWithEmailAndPassword(this.model.username, this.model.password)
       .then((result) => {
         if (result) {
+          console.log(result)
           this.insertUserInUserCollection({ email: result.user.email, nombre: this.username_lastname, uid: result.user.uid })
           this.localStorageService.setItem('uid', result.user.uid)
           this.router.navigateByUrl('/dashboard')
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
   }
   //aca jony va a crear una interface para el user a insertar donde va el : any
   private insertUserInUserCollection(user: any) {
-    this.firestore.collection('users').add(user);
+    this.firestore.collection('users').doc(user.uid).set(user);
   }
 
 }

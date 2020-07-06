@@ -10,4 +10,8 @@ export class LocalStorageService {
   public setItem(key: string, value: string) {
     localStorage.setItem(key, value);
   }
+
+  public getUid() {
+    return localStorage.getItem('uid')
+  }
 }
