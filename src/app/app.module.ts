@@ -38,6 +38,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EntrepreneurshipUpsertComponent } from './entrepreneurship-upsert/entrepreneurship-upsert.component';
 
 
 
@@ -49,6 +50,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     RegisterComponent,
     DashboardComponent,
     ToolbarComponent,
+    EntrepreneurshipUpsertComponent,
   ],
   imports: [
     BrowserModule,

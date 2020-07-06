@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { auth } from 'firebase/app';
 import { User } from './../models/user.model';
@@ -12,14 +13,14 @@ import { LocalStorageService } from '../services/localtorages.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private afs: AngularFirestore, private localStorage: LocalStorageService) { }
+  constructor(private afs: AngularFirestore, private localStorage: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.localStorage.getUid())
   }
 
   crearEmprendimiento() {
-
+    this.router.navigateByUrl('/add')
     //console.log("+1 emprendimiento")
     /*
     this.afs.firestore.collection('users').where('uid', '==', 'giVbspbxjlY0KNs1X1e1pFmuDjj1').get()
