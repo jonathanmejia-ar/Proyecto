@@ -1,9 +1,9 @@
-import { LocalstorageServiceService } from './../../services/localstorage-service.service';
 
 import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { LocalStorageService } from '../../services/localtorages.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,11 +12,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class ToolbarComponent implements OnInit {
   username: string
-  constructor(private router: Router, public afAuth: AngularFireAuth, private localStorage: LocalstorageServiceService) { }
+  constructor(private router: Router, public afAuth: AngularFireAuth, private localStorage: LocalStorageService) { }
 
   ngOnInit(): void {
-
-    this.username = this.localStorage.getCurrentUser()
 
 
   }

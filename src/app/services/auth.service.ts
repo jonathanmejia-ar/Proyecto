@@ -12,6 +12,7 @@ import {
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { LocalStorageService } from './localtorages.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -21,13 +22,15 @@ export class AuthService {
     constructor(
         private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
-        private router: Router
+        private router: Router,
+        private localStorageService: LocalStorageService
     ) {
         this.user$ = this.afAuth.authState.pipe(
             switchMap(user => {
                 if (user) {
+                    this.localStorageService.setItem('uid', user.uid)
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-                    localStorage.setItem('currentUid', user.uid)
+
                 } else {
                     return of(null);
                 }
@@ -38,10 +41,10 @@ export class AuthService {
     public async googleSignin() {
         const provider = new auth.GoogleAuthProvider();
         const credential = await this.afAuth.signInWithPopup(provider);
-        return this.updateUserData(credential.user);
+        return this.updateUserDataInDataBase(credential.user);
     }
 
-    private updateUserData(user) {
+    private updateUserDataInDataBase(user) {
         // Sets user data to firestore on login
         const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
@@ -50,7 +53,7 @@ export class AuthService {
             email: user.email,
             nombre: user.displayName,
         };
-
+        this.localStorageService.setItem('uid', user.uid)
         return userRef.set(data, { merge: true });
     }
 

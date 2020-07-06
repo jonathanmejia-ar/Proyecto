@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crearEmprendimiento(){
+  crearEmprendimiento() {
 
     //console.log("+1 emprendimiento")
     /*
@@ -27,12 +27,11 @@ export class DashboardComponent implements OnInit {
       //where('user', '==', 'uiJdxtQSIab5I2yZpPU6OZksXaN2').get()
       
     })*/
-   
+
     //this.afs.firestore.collection('users').where('uid', '==', 'giVbspbxjlY0KNs1X1e1pFmuDjj1').snapshotChanges()
     this.afs.collection('users').doc('giVbspbxjlY0KNs1X1e1pFmuDjj1').snapshotChanges().pipe(map(r => r.payload.data())).subscribe(x => console.log(x))
 
-    //var user = afs.auth().currentUser;
 
-  
+
   }
 }

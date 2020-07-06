@@ -1,8 +1,9 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { UserInput } from '../models/user-input.model';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from '@angular/router';
-import { User } from './../models/user.model';
+import { LocalStorageService } from '../services/localtorages.service';
 
 @Component({
   selector: 'app-register',
@@ -10,8 +11,10 @@ import { User } from './../models/user.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  model: UserInput = { username: '', password: '', confirmPassword: ''};
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  model: UserInput = { username: '', password: '', confirmPassword: '' };
+  username_lastname: string
+  constructor(private afAuth: AngularFireAuth, private router: Router, private localStorageService: LocalStorageService,
+    private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
   }
@@ -20,13 +23,17 @@ export class RegisterComponent implements OnInit {
     return this.afAuth.createUserWithEmailAndPassword(this.model.username, this.model.password)
       .then((result) => {
         if (result) {
+          this.insertUserInUserCollection({ email: result.user.email, nombre: this.username_lastname, uid: result.user.uid })
+          this.localStorageService.setItem('uid', result.user.uid)
           this.router.navigateByUrl('/dashboard')
         }
-        console.log(result.user)
       }).catch((error) => {
         window.alert(error.message)
       })
   }
+  //aca jony va a crear una interface para el user a insertar donde va el : any
+  private insertUserInUserCollection(user: any) {
+    this.firestore.collection('users').add(user);
+  }
 
-  
 }

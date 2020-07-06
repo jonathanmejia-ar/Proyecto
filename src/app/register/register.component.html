@@ -12,13 +12,20 @@
                                     required type="text">
                                 <mat-error>El usuario es requerido </mat-error>
                             </mat-form-field>
+
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>Nombre Competo</mat-label>
+                                <input [(ngModel)]="username_lastname" name="username_lastname" matInput
+                                    placeholder="Placeholder" required type="text">
+                                <mat-error>El username_lastname es requerido </mat-error>
+                            </mat-form-field>
                         </div>
 
                         <div class="form-label-group">
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input [(ngModel)]="model.password" name="password" id="validar_password" matInput placeholder="Placeholder"
-                                    required type="text">
+                                <input [(ngModel)]="model.password" name="password" id="validar_password" matInput
+                                    placeholder="Placeholder" required type="text">
                                 <mat-error>El password es requerido </mat-error>
                             </mat-form-field>
                         </div>
@@ -26,13 +33,14 @@
                         <div class="form-label-group">
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Confirmar Password</mat-label>
-                                <input [(ngModel)]="model.confirmPassword" name="confirmPassword" id="validar_confirm" matInput placeholder="Placeholder"
-                                    required type="text">
+                                <input [(ngModel)]="model.confirmPassword" name="confirmPassword" id="validar_confirm"
+                                    matInput placeholder="Placeholder" required type="text">
                                 <mat-error>El password es requerido </mat-error>
                             </mat-form-field>
                         </div>
 
-                        <button mat-button [disabled]="model.username == '' || model.password == '' || model.password  != model.confirmPassword"
+                        <button mat-button
+                            [disabled]="model.username == '' || model.password == '' || model.password  != model.confirmPassword"
                             class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
                     </form>
                 </div>
