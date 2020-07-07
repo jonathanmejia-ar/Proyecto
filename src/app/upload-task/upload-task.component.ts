@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage' 
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
@@ -24,15 +24,16 @@ export class UploadTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.startUpload();
-    console.log(this.file)
+    console.log(this.file, 'arhe')
   }
 
-  startUpload(){
+  startUpload() {
     //Storage path
     const path = `test/${Date.now()}_${this.file.name}`;
+    console.log(this.file, 'entre aca')
 
     //Referencia de storage bucket
-    const ref= this.storage.ref(path);
+    const ref = this.storage.ref(path);
 
     // main task
     this.task = this.storage.upload(path, this.file);
@@ -42,13 +43,13 @@ export class UploadTaskComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
 
     this.snapshot = this.task.snapshotChanges().pipe(tap(console.log),
-    // Url del archivo
-    finalize( async() => {
-      this.downloadURL = await ref.getDownloadURL().toPromise();
+      // Url del archivo
+      finalize(async () => {
+        this.downloadURL = await ref.getDownloadURL().toPromise();
 
-      this.afs.collection('files').add( { downloadURL: this.downloadURL, path});
-      
-    }),
+        this.afs.collection('files').add({ downloadURL: this.downloadURL, path });
+
+      }),
     );
   }
 
