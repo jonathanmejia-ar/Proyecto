@@ -39,6 +39,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EntrepreneurshipUpsertComponent } from './entrepreneurship-upsert/entrepreneurship-upsert.component';
+import { DropzoneDirective } from './dropzone.directive';
+import { UploaderComponent } from './uploader/uploader.component';
+import { UploadTaskComponent } from './upload-task/upload-task.component';
 
 
 
@@ -51,6 +54,9 @@ import { EntrepreneurshipUpsertComponent } from './entrepreneurship-upsert/entre
     DashboardComponent,
     ToolbarComponent,
     EntrepreneurshipUpsertComponent,
+    DropzoneDirective,
+    UploaderComponent,
+    UploadTaskComponent,
   ],
   imports: [
     BrowserModule,
