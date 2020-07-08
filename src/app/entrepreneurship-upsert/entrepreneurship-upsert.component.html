@@ -9,6 +9,8 @@
             </mat-form-field>
         </div>
 
+        <app-uploader></app-uploader>
+
         <div class="form-label-group">
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Descripcion</mat-label>
@@ -17,6 +19,7 @@
                 <mat-error>El password es requerido </mat-error>
             </mat-form-field>
         </div>
+
 
         <button mat-button [disabled]="!frm.form" class="btn btn-lg btn-primary btn-block text-uppercase"
             type="submit">Guardar</button>
