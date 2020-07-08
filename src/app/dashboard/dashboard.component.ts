@@ -13,10 +13,13 @@ import { LocalStorageService } from '../services/localtorages.service';
 })
 export class DashboardComponent implements OnInit {
 
+  imgJoly: string
   constructor(private afs: AngularFirestore, private localStorage: LocalStorageService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.localStorage.getUid())
+    this.afs.collection('emprendimientos').snapshotChanges().subscribe((x: any) => {
+      this.imgJoly = x[0].payload.doc.data().downloadURL;
+    })
   }
 
   crearEmprendimiento() {

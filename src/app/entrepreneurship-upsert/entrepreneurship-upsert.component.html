@@ -1,1 +1,26 @@
-<p>entrepreneurship-upsert works!</p>
+<div class="container">
+    <form class="form-signin" #frm="ngForm" (ngSubmit)="upsertEntrepreneurship()">
+        <div class="form-label-group">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input [(ngModel)]="model.name" name="name" matInput placeholder="Nombre del emprendimiento" required
+                    type="text">
+                <mat-error>El usuario es requerido </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-label-group">
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Descripcion</mat-label>
+                <input [(ngModel)]="model.description" name="description" matInput placeholder="Placeholder" required
+                    type="text">
+                <mat-error>El password es requerido </mat-error>
+            </mat-form-field>
+        </div>
+
+        <button mat-button [disabled]="!frm.form" class="btn btn-lg btn-primary btn-block text-uppercase"
+            type="submit">Guardar</button>
+
+        <hr class="my-4">
+    </form>
+</div>

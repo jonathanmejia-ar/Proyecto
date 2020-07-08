@@ -24,7 +24,7 @@ export class UploadTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.startUpload();
-    console.log(this.file, 'arhe')
+
   }
 
   startUpload() {
