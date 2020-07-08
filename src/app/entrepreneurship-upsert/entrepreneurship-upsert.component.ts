@@ -13,16 +13,10 @@ export class EntrepreneurshipUpsertComponent implements OnInit {
 
   ngOnInit(): void {
     this.model.uid = this.localStorageService.getUid()
-
   }
 
   public upsertEntrepreneurship() {
-    this.entrepreneurshipService.saveEntrepreneurship(this.model).subscribe(x => {
-      console.log(x)
-    })
-
-
-    console.log(this.model)
-  }
-
+    this.entrepreneurshipService.saveEntrepreneurship(this.model)
+     
+    }
 }

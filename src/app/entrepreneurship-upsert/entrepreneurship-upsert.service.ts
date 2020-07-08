@@ -16,11 +16,18 @@ export class EntrepreneurshipUpsertService {
   }
 
 
-
-  public saveEntrepreneurship(entrepreneurship): Observable<any> {
-    this.firestore.collection('entrepreneurship').doc(entrepreneurship.uid).set(entrepreneurship)
+/*
+  public saveEntrepreneurship(entrepreneurship){
+     this.firestore.collection('entrepreneurship').doc(entrepreneurship.uid).set(entrepreneurship)
+   
     // aca se le va a pegar a firebase con un add
   }
+*/
+  public saveEntrepreneurship(entrepreneurship){
+    this.firestore.collection('entrepreneurship').doc(entrepreneurship.uid).collection('entrepreneurship collection').add(entrepreneurship)
+  
+   // aca se le va a pegar a firebase con un add
+ }
 
   editEntrepreneurship(entrepreneurship) {
     this.firestore.collection('entrepreneurship').doc(entrepreneurship.uid).set(entrepreneurship)
