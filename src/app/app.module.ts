@@ -42,6 +42,8 @@ import { EntrepreneurshipUpsertComponent } from './entrepreneurship-upsert/entre
 import { DropzoneDirective } from './dropzone.directive';
 import { UploaderComponent } from './uploader/uploader.component';
 import { UploadTaskComponent } from './upload-task/upload-task.component';
+import { MyEntrepreneurshipComponent } from './my-entrepreneurship/my-entrepreneurship.component';
+import { ProfileEntrepreneurshipComponent } from './profile-entrepreneurship/profile-entrepreneurship.component';
 
 
 
@@ -57,6 +59,8 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
     DropzoneDirective,
     UploaderComponent,
     UploadTaskComponent,
+    MyEntrepreneurshipComponent,
+    ProfileEntrepreneurshipComponent,
   ],
   imports: [
     BrowserModule,
