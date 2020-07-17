@@ -10,6 +10,8 @@ import { tap } from 'rxjs/operators';
 })
 export class EntrepreneurshipUpsertComponent implements OnInit {
   model: any = { name: '', category: '', description: '', images: [], uid: '' };
+//model: any = {name: ''}
+
   startupList = [];
   constructor(
     private entrepreneurshipService: EntrepreneurshipUpsertService,
@@ -25,8 +27,14 @@ export class EntrepreneurshipUpsertComponent implements OnInit {
         console.log(element.data());
       });
     });
+    
   }
+
+  public upsertEntrepreneurship() {
+    this.entrepreneurshipService.saveStartup(this.model,this.model.uid);
+  }
+  /*
   public upsertEntrepreneurship() {
     this.entrepreneurshipService.saveEntrepreneurship(this.model);
-  }
+  }*/
 }

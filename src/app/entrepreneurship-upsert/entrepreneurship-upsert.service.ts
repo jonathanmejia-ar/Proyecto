@@ -72,4 +72,10 @@ export class EntrepreneurshipUpsertService {
       .set(entrepreneurship);
     // aca se le pega a firebase con un update
   }
+
+  public saveStartup(entrepreneurship,uid){
+    this.firestore.collection('users').doc(uid).update({
+      startupList:[entrepreneurship]
+    })
+  }
 }
