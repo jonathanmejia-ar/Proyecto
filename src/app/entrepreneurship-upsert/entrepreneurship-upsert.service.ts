@@ -2,7 +2,7 @@ import { LocalStorageService } from './../services/localtorages.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { firestore } from 'firebase/app';
 
 
@@ -81,6 +81,7 @@ export class EntrepreneurshipUpsertService {
       //startupList:[entrepreneurship]
       startupList: firestore.FieldValue.arrayUnion(entrepreneurship)
       
+
 
     })
   }
