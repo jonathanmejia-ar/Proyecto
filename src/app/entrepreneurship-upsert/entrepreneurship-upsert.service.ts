@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { firestore } from 'firebase/app';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,7 @@ export class EntrepreneurshipUpsertService {
   constructor(
     private firestore: AngularFirestore,
     private localStorageService: LocalStorageService
+    
   ) {}
 
   public getCategoriesJson() {
@@ -75,7 +78,10 @@ export class EntrepreneurshipUpsertService {
 
   public saveStartup(entrepreneurship,uid){
     this.firestore.collection('users').doc(uid).update({
-      startupList:[entrepreneurship]
+      //startupList:[entrepreneurship]
+      startupList: firestore.FieldValue.arrayUnion(entrepreneurship)
+      
+
     })
   }
 }
