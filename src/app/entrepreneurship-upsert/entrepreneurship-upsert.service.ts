@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { firestore } from 'firebase/app';
-import { generate } from 'shortid';
 
 @Injectable({
   providedIn: 'root',
@@ -77,10 +76,9 @@ export class EntrepreneurshipUpsertService {
   }
 
   public saveStartup(entrepreneurship, uid) {
-    let id = generate()
+
     this.firestore.collection('users').doc(uid).update({
-      startupList: firestore.FieldValue.arrayUnion(entrepreneurship)
-    
+      startupList: firestore.FieldValue.arrayUnion(entrepreneurship)   
 
     })
   }
