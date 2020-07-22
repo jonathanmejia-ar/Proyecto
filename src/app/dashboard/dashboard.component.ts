@@ -1,11 +1,7 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { auth } from 'firebase/app';
 import { User } from './../models/user.model';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
+
 import { map, tap } from 'rxjs/operators';
 import { LocalStorageService } from '../services/localtorages.service';
 
@@ -15,6 +11,19 @@ import { LocalStorageService } from '../services/localtorages.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  constructor(private localStorage: LocalStorageService,private router: Router){
+
+    }
+  ngOnInit(): void {
+
+  }
+  crearEmprendimiento(){
+    this.router.navigateByUrl('/new-startup');
+    
+  }
+}
+
+  /*
   imgJoly: string;
   constructor(
     private afs: AngularFirestore,
@@ -33,22 +42,11 @@ export class DashboardComponent implements OnInit {
 
   crearEmprendimiento() {
     this.router.navigateByUrl('/add');
-    //console.log("+1 emprendimiento")
-    /*
-    this.afs.firestore.collection('users').where('uid', '==', 'giVbspbxjlY0KNs1X1e1pFmuDjj1').get()
-    .then(res=>{
-     res.docs.map(u => 
-     //console.log(u.data()))
-      //where('user', '==', 'uiJdxtQSIab5I2yZpPU6OZksXaN2').get()
-      
-    })*/
-
-    //this.afs.firestore.collection('users').where('uid', '==', 'giVbspbxjlY0KNs1X1e1pFmuDjj1').snapshotChanges()
     this.afs
       .collection('users')
       .doc(this.localStorage.getUid())
       .snapshotChanges()
       .pipe(map((r) => r.payload.data()))
       .subscribe((x) => console.log(x));
-  }
-}
+  }*/
+

@@ -1,14 +1,26 @@
 import { LocalStorageService } from './../services/localtorages.service';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { firestore } from 'firebase/app';
+import {HttpClient} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root',
 })
 export class EntrepreneurshipUpsertService {
+
+  private URL = 'http://localhost:4000/api'
+
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService){
+    
+  }
+  
+  newStartupService(startup){
+    return this.http.post<any>(this.URL + '/new-startup', startup,{responseType:'json'});
+}
+}
+
+  /*
   constructor(
     private firestore: AngularFirestore,
     private localStorageService: LocalStorageService
@@ -50,13 +62,7 @@ export class EntrepreneurshipUpsertService {
   public test(): Observable<any> {
     return this.firestore.collection('users').get();
   }
-  /*
-  public saveEntrepreneurship(entrepreneurship){
-     this.firestore.collection('entrepreneurship').doc(entrepreneurship.uid).set(entrepreneurship)
-   
-    // aca se le va a pegar a firebase con un add
-  }
-*/
+  
   public saveEntrepreneurship(entrepreneurship) {
     this.firestore
       .collection('entrepreneurship')
@@ -81,5 +87,5 @@ export class EntrepreneurshipUpsertService {
       startupList: firestore.FieldValue.arrayUnion(entrepreneurship)   
 
     })
-  }
-}
+  }*/
+

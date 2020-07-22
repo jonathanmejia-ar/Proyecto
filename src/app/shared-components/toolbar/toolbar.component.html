@@ -1,4 +1,20 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
+    <a routerLink="/dashboard" >Inicio</a>
+    <span class="fill-remaining-space"></span>
+
+    <a routerLink="/login" routerLinkActive="active" >
+        <button mat-button>Login</button>
+    </a>
+
+    <a routerLink="/register" routerLinkActive="active" >
+        <button mat-button>Register</button>       
+    </a>
+    <a (click)="logout()">
+        <button mat-button>Logout</button>
+    </a>
+</mat-toolbar>
+
+<!--<mat-toolbar>
     <div class="row w-100">
         <div class="col-lg-6">
             <span>{{username}}</span>
@@ -7,4 +23,4 @@
             <div class="text-right" (click)="logout()">LogOut</div>
         </div>
     </div>
-</mat-toolbar>
+</mat-toolbar>-->

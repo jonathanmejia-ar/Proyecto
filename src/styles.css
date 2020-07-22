@@ -3,6 +3,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.fill-remaining-space{
+  flex: 1 1 auto;
+}
+.active{
+  border: 1px solid #f5f5f5;
+}
+
 :root {
     --input-padding-x: 1.5rem;
     --input-padding-y: .75rem;
@@ -189,4 +197,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display:block;
     margin:0.4em auto;
     }
+
+    
 }

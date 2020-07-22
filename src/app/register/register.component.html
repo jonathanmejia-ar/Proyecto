@@ -8,16 +8,16 @@
                         <div class="form-label-group">
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Email</mat-label>
-                                <input [(ngModel)]="model.username" name="username" matInput placeholder="Placeholder"
+                                <input [(ngModel)]="model.email" name="email" matInput placeholder="Placeholder"
                                     required type="text">
-                                <mat-error>El usuario es requerido </mat-error>
+                                <mat-error>El email es requerido</mat-error>
                             </mat-form-field>
 
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Nombre Competo</mat-label>
-                                <input [(ngModel)]="username_lastname" name="username_lastname" matInput
+                                <input [(ngModel)]="model.name" name="name" matInput
                                     placeholder="Placeholder" required type="text">
-                                <mat-error>El username_lastname es requerido </mat-error>
+                                <mat-error>El nombre es requerido </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -40,7 +40,7 @@
                         </div>
 
                         <button mat-button
-                            [disabled]="model.username == '' || model.password == '' || model.password  != model.confirmPassword"
+                            [disabled]="model.email == ''|| model.name == '' || model.password == '' || model.password  != model.confirmPassword"
                             class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrarse</button>
                     </form>
                 </div>

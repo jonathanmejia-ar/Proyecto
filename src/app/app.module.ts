@@ -1,9 +1,6 @@
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from './shared-components/toolbar/toolbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,11 +37,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EntrepreneurshipUpsertComponent } from './entrepreneurship-upsert/entrepreneurship-upsert.component';
 import { DropzoneDirective } from './dropzone.directive';
-import { UploaderComponent } from './uploader/uploader.component';
-import { UploadTaskComponent } from './upload-task/upload-task.component';
 import { MyEntrepreneurshipComponent } from './my-entrepreneurship/my-entrepreneurship.component';
 import { ProfileEntrepreneurshipComponent } from './profile-entrepreneurship/profile-entrepreneurship.component';
-
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService} from './services/token-interceptor.service'
 
 
 @NgModule({
@@ -57,17 +53,13 @@ import { ProfileEntrepreneurshipComponent } from './profile-entrepreneurship/pro
     ToolbarComponent,
     EntrepreneurshipUpsertComponent,
     DropzoneDirective,
-    UploaderComponent,
-    UploadTaskComponent,
     MyEntrepreneurshipComponent,
     ProfileEntrepreneurshipComponent,
   ],
+
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -95,8 +87,17 @@ import { ProfileEntrepreneurshipComponent } from './profile-entrepreneurship/pro
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true
+    }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

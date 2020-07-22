@@ -8,7 +8,7 @@
                         <div class="form-label-group">
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Email</mat-label>
-                                <input [(ngModel)]="model.username" name="username" matInput placeholder="Placeholder"
+                                <input [(ngModel)]="model.email" name="email" matInput placeholder="Placeholder"
                                     required type="text">
                                 <mat-error>El usuario es requerido </mat-error>
                             </mat-form-field>
@@ -23,7 +23,7 @@
                             </mat-form-field>
                         </div>
 
-                        <button mat-button [disabled]="model.username == '' || model.password == ''"
+                        <button mat-button [disabled]="model.email == '' || model.password == ''"
                             class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                         <button mat-button class="btn btn-lg btn-warning btn-block text-uppercase" type="button"
                             [routerLink]="['/register']">Register</button>

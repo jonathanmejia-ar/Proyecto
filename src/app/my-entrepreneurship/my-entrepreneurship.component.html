@@ -1,16 +1,17 @@
 <p>my-entrepreneurship works!</p>
+
+
 <a href="/dashboard" class="button1">Volver</a>
+
 <div class="d-flex">
-<div *ngFor="let s of startupList">
-       
-        <div class="card mr-3" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{s.startName}}</h5>
-              <p class="card-text">{{s.startDescr}}</p>
-              <a href="/profile/{{s.id}}" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+  <div *ngFor="let s of startupList">
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+      <div class="card-header">{{s.name}}</div>
+      <div class="card-body">
+        <p class="card-text">{{s.description}}</p>
+        <a href="/profile/{{s._id}}" class="btn btn-primary">Perfil</a>
+        <a (click)="deleteStartup(s._id)" class="btn btn-primary">Borrar</a>
+      </div>
     </div>
-    
+  </div>
+</div>

@@ -2,22 +2,45 @@ import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-import {
-    AngularFirestore,
-    AngularFirestoreDocument
-} from '@angular/fire/firestore';
-
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { LocalStorageService } from './localtorages.service';
-
+import {HttpClient} from '@angular/common/http'
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthService {
-    public user$: Observable<any>;
+    //public user$: Observable<any>;
+
+    private URL = 'http://localhost:4000/api'
+
+    constructor(private http: HttpClient,
+         private router: Router,
+         private localStorageService: LocalStorageService){
+    }
+
+    registerService(user){
+       return this.http.post<any>(this.URL + '/signup', user);
+    }
+
+    loginService(user){
+        return this.http.post<any>(this.URL + '/signin', user);
+    }
+
+    loggedIn(){
+        return!!localStorage.getItem('token')
+    }   
+    getToken(){
+        return localStorage.getItem('token');
+    }
+
+    logoutService(){
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('/login');
+    }
+   
+}
+    /*public user$: Observable<any>;
 
     constructor(
         private afAuth: AngularFireAuth,
@@ -60,5 +83,5 @@ export class AuthService {
     public async signOut() {
         await this.afAuth.signOut();
         return this.router.navigate(['/']);
-    }
-}
+    }*/
+

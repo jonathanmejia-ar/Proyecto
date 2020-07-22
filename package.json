@@ -23,7 +23,6 @@
     "@angular/platform-browser-dynamic": "~10.0.0",
     "@angular/router": "~10.0.0",
     "bootstrap": "^4.5.0",
-    "firebase": "^7.15.5",
     "ng-mat-select-infinite-scroll": "^2.0.0",
     "rxjs": "~6.5.5",
     "shortid": "^2.2.15",
